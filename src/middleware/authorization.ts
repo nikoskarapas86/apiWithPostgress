@@ -1,22 +1,23 @@
+import { NextFunction, Request, Response } from "express";
 import jsonwebtoken from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
 
 export const authorizationToken = (
-  req: Request,
-  res: Response,
+  request: Request,
+  respose: Response,
   next: NextFunction
 ) => {
   try {
-    const authHead: string | undefined = req.headers.authorization;
-    const token: string = authHead ? authHead.split(" ")[1] : "";
+    const bearerHead: string | undefined = request.headers.authorization;
+    const token: string = bearerHead ? bearerHead.split(" ")[1] : "";
 
-    const decoded: string | object = jsonwebtoken.verify(
+    const decodedUser: string | object = jsonwebtoken.verify(
       token,
       process.env.JWT_SECRET as string
     );
-    res.locals.userData = decoded;
+    respose.locals.userData = decodedUser;
     next();
   } catch (err: any) {
+    //401 is unauthorized
     err.code = 401;
     next(err);
   }
