@@ -2,7 +2,7 @@ import { PoolClient, QueryResult } from "pg";
 import { ProductInterface } from "../interfaces/products";
 import client from "../utilities/database";
 
-export class ProductModel {
+export class ProductService {
   async getProducts(): Promise<ProductInterface[]> {
     try {
       const conn: PoolClient = await client.connect();

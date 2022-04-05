@@ -3,7 +3,7 @@ import { PoolClient, QueryResult } from "pg";
 import { UserInterface, UserReturnInterface } from "../interfaces/User";
 import client from "../utilities/database";
 
-export class UserModel {
+export class UserService {
   async getUsers(): Promise<any[]> {
     try {
       const conn: PoolClient = await client.connect();

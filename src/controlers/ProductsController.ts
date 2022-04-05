@@ -1,16 +1,20 @@
 import { Request, Response, Router } from "express";
 import { ProductInterface } from "../interfaces/products";
 import { authorizationToken } from "../middleware/authorization";
-import { ProductModel } from "../models/ProductModel";
+import { ProductService } from "../services/ProductService";
 
 export const ProductController: Router = Router();
-const product: ProductModel = new ProductModel();
-ProductController.post("/", async (request: Request, response: Response) => {
-  const createdProduct: ProductInterface = await product.createProduct(
-    request.body
-  );
-  return response.json(createdProduct);
-});
+const product: ProductService = new ProductService();
+ProductController.post(
+  "/",
+  authorizationToken,
+  async (request: Request, response: Response) => {
+    const createdProduct: ProductInterface = await product.createProduct(
+      request.body
+    );
+    return response.json(createdProduct);
+  }
+);
 
 ProductController.get(
   "/",

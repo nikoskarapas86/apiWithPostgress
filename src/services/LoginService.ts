@@ -3,7 +3,7 @@ import { UserAuthenticatedInterface, UserInterface } from "../interfaces/User";
 import { createToken } from "../utilities/createToken";
 import client from "../utilities/database";
 
-export class LoginModel {
+export class LoginService {
   async authenticate(
     user: UserInterface
   ): Promise<UserAuthenticatedInterface | null> {

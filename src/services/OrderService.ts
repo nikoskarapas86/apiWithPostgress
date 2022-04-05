@@ -34,4 +34,17 @@ export class OrderService {
       throw new Error(`Could not create order.`);
     }
   }
+
+  async deleteOrder(id: number): Promise<OrderInterface> {
+    try {
+      const sql = `DELETE FROM orders WHERE id=$1 RETURNING *`;
+      const conn = await client.connect();
+      const result = await conn.query(sql, [id]);
+      conn.release();
+
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not delete order`);
+    }
+  }
 }

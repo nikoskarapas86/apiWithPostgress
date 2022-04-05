@@ -1,10 +1,10 @@
 import { Request, Response, Router } from "express";
 import { UserReturnInterface } from "../interfaces/User";
 import { authorizationToken } from "../middleware/authorization";
-import { UserModel } from "../models/userModel";
+import { UserService } from "../services/userService";
 
 export const UserController: Router = Router();
-const user: UserModel = new UserModel();
+const user: UserService = new UserService();
 UserController.post("/", async (request: Request, response: Response) => {
   const createdUser: any = await user.createUser(request.body);
   return response.json(createdUser);
