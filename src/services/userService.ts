@@ -1,13 +1,13 @@
 import bcrypt from "bcrypt";
 import { PoolClient, QueryResult } from "pg";
-import { UserInterface, UserReturnInterface } from "../interfaces/User";
+import { UserInterface } from "../interfaces/User";
 import client from "../utilities/database";
 
 export class UserService {
-  async getUsers(): Promise<any[]> {
+  async getUsers(): Promise<UserInterface[]> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql: string = `SELECT * FROM users`;
+      const sql = `SELECT * FROM users`;
       const result: QueryResult = await conn.query(sql);
       conn.release();
 
@@ -17,7 +17,7 @@ export class UserService {
     }
   }
 
-  async createUser(u: UserInterface): Promise<any> {
+  async createUser(u: UserInterface): Promise<UserInterface> {
     try {
       const conn = await client.connect();
       const { firstName, lastName, password } = u;
@@ -41,10 +41,10 @@ export class UserService {
       throw new Error(`unable create user ${error}`);
     }
   }
-  async getUserById(userId: number): Promise<UserReturnInterface> {
+  async getUserById(userId: number): Promise<UserInterface> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql: string = `SELECT * FROM users WHERE id = $1`;
+      const sql = `SELECT * FROM users WHERE id = $1`;
       const result: QueryResult = await conn.query(sql, [userId]);
       conn.release();
 
@@ -54,9 +54,9 @@ export class UserService {
     }
   }
 
-  async deleteUser(id: number): Promise<UserReturnInterface> {
+  async deleteUser(id: number): Promise<UserInterface> {
     try {
-      const sql: string = `DELETE FROM users WHERE id=$1 RETURNING *`;
+      const sql = `DELETE FROM users WHERE id=$1 RETURNING *`;
       const conn: PoolClient = await client.connect();
       const result: QueryResult = await conn.query(sql, [id]);
       conn.release();

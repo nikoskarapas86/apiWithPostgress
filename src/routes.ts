@@ -11,9 +11,9 @@ const routesArray: [string, Router][] = [
   ["/orders", OrderController],
 ];
 
-export const routes: Function = (app: Application): void => {
+export const routes = (app: Application): void => {
   routesArray.forEach((route) => {
     const [url, controller] = route;
-    app.use(url, controller);
+    app.use(`/api${url}`, controller);
   });
 };

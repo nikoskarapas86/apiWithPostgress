@@ -16,9 +16,7 @@ export const authorizationToken = (
     );
     respose.locals.userData = decodedUser;
     next();
-  } catch (err: any) {
-    //401 is unauthorized
-    err.code = 401;
+  } catch (err) {
     next(err);
   }
 };

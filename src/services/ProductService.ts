@@ -6,7 +6,7 @@ export class ProductService {
   async getProducts(): Promise<ProductInterface[]> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql: string = `SELECT * FROM products`;
+      const sql = `SELECT * FROM products`;
       const result: QueryResult = await conn.query(sql);
       conn.release();
 
@@ -16,7 +16,7 @@ export class ProductService {
     }
   }
 
-  async createProduct(product: ProductInterface): Promise<any> {
+  async createProduct(product: ProductInterface): Promise<ProductInterface> {
     try {
       const conn = await client.connect();
       const { name, price, category } = product;
@@ -38,7 +38,7 @@ export class ProductService {
   async getProductById(prodId: number): Promise<ProductInterface> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql: string = `SELECT * FROM products WHERE id = $1`;
+      const sql = `SELECT * FROM products WHERE id = $1`;
       const result: QueryResult = await conn.query(sql, [prodId]);
       conn.release();
 
@@ -50,7 +50,7 @@ export class ProductService {
 
   async deleteProduct(prodId: number): Promise<ProductInterface> {
     try {
-      const sql: string = `DELETE FROM products WHERE id=$1 RETURNING *`;
+      const sql = `DELETE FROM products WHERE id=$1 RETURNING *`;
       const conn: PoolClient = await client.connect();
       const result: QueryResult = await conn.query(sql, [prodId]);
       conn.release();
