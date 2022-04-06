@@ -9,6 +9,8 @@
     "test": "jasmine-ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
+    "prettier": "prettier \"src/**/*\"",
+    "prettier:fix": "prettier --write \"src/**/*\"",
     "tsc": "tsc"
   },
   "author": "Udacity",
@@ -40,6 +42,7 @@
     "jasmine-spec-reporter": "^6.0.0",
     "jasmine-ts": "^0.3.0",
     "nodemon": "^2.0.15",
+    "prettier": "^2.6.2",
     "ts-node": "^9.1.1",
     "tsc-watch": "^4.2.9"
   }
