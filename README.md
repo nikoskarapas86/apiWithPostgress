@@ -4,6 +4,66 @@
 
 This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
 
+in order to run this app you need to folow the next steps.
+
+1. create a database with the name eshop
+2. create an .env file and in there iclude the following
+   SET NODE_ENV=dev
+   BCRYPT_PASSWORD=give a password
+   SALT_ROUNDS= write a number
+   JWT_SECRET= add a secret password
+   HOST="127.0.0.1"
+   PORT=5432
+   USER="postgres"
+   DATABASE="eshop"
+   PASSWORD=the password you use to connect to your databases
+
+3. next run npm install or yarn on your project.
+
+4. migrations
+
+5. in your postman create a post request:
+   the api: http://localhost:3000/api/users
+   and the body {
+   "firstName":"name",
+   "lastName":"last name",
+   "password":"your password"
+   }
+   6.now you have to login to the application
+   in your postman create a get request:
+
+the get api : http://localhost:3000/api/login
+and the body:{
+"firstName":"name of your user",
+
+    "password":"password of your user"
+
+}
+you will receive a response like this
+{
+"auth": true,
+"token": "eyJhbGciOiJIUzI1NiJ9.Mg.lWUHXNK-wlFFTIiNDWZQEeGiOb2dB0l1uUtagdMFK68"
+}
+
+for the next http requests from your postman you have to include the token in your headers
+
+like this -> Authorization: Bearer "the token you received from above"
+
+now its time to create a product
+in your postman you can call the post api: http://localhost:3000/api/products
+with the body
+"name": name of your product,
+"price": price of your product,
+"category": enter a category
+
+now its time to create an order(since you have users and products):
+in your postman you can call the post api: http://localhost:3000/api/orders
+with the body
+"productid": enter the product id,
+"quantity": enter the product quantity,
+"userid": enter the user id,
+"status":enter a status(like active or inactive)
+
 ## Required Technologies
 
 Your application must make use of the following libraries:

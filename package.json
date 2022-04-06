@@ -13,7 +13,9 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier": "prettier \"src/**/*\"",
     "prettier:fix": "prettier --write \"src/**/*\"",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "db-up": "db-migrate up",
+    "db-down": "db-migrate down"
   },
   "author": "Udacity",
   "license": "ISC",
