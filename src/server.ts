@@ -1,5 +1,5 @@
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import express from "express";
 import { routes } from "./routes";
 dotenv.config();
