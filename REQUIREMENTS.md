@@ -21,7 +21,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 
 - Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- show `api/orders` [GET] [token required]
 
 ## Data Shapes
 
@@ -46,3 +46,36 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+
+## Data Shapes
+
+#### Product
+
+Table: _products_
+
+- id `SERIAL PRIMARY KEY`
+- name `VARCHAR`
+- price `INTEGER`
+
+#### User
+
+Table: _users_
+
+- id `SERIAL PRIMARY KEY`
+- firstname `VARCHAR`
+- lastname `VARCHAR`
+- passwordt `VARCHAR`
+
+#### Orders
+
+Table: _orders_
+
+- id `SERIAL PRIMARY KEY`
+- userid `INTEGER` `REFERENCES users(id)`
+- status `BOOLEAN`
+
+Table: _order_products_
+
+- order_id `INTEGER` `REFERENCES orders(id)`
+- product_id `INTEGER` `REFERENCES products(id)`
+- quantity `INTEGER`
