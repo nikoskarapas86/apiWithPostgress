@@ -5,5 +5,12 @@
         "database": "eshop",
         "user": "postgres",
         "password": "fermionio"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "eshop_test",
+        "user": "postgres",
+        "password": "fermionio"
     }
 }

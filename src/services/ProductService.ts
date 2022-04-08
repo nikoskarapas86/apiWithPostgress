@@ -19,12 +19,13 @@ export class ProductService {
   async createProduct(product: ProductInterface): Promise<ProductInterface> {
     try {
       const conn = await client.connect();
-      const { name, price, category } = product;
-      console.log(name, price, category);
+      const { name, price } = product;
+      console.log("-=-==-=-=-=--=-==-=-");
+      console.log(name, price);
       const sql =
-        "INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *";
+        "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";
 
-      const result = await conn.query(sql, [name, price, category]);
+      const result = await conn.query(sql, [name, price]);
       const createdProduct = result.rows[0];
 
       conn.release();

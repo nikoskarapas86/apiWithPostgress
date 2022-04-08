@@ -8,7 +8,7 @@ in order to run this app you need to folow the next steps.
 
 1. create a database with the name eshop
 2. create an .env file and in there iclude the following
-   SET NODE_ENV=dev
+   SET ENVI=dev
    BCRYPT_PASSWORD=give a password
    SALT_ROUNDS= write a number
    JWT_SECRET= add a secret password
@@ -18,9 +18,26 @@ in order to run this app you need to folow the next steps.
    DATABASE="eshop"
    PASSWORD=the password you use to connect to your databases
 
-3. next run npm install or yarn on your project.
+also in my project you will se a database.json file
+{
+"dev": {
+"driver": "pg",
+"host": "localhost",
+"database": "eshop",
+"user": "postgres",
+"password": "###"
+},
+"test": {
+"driver": "pg",
+"host": "localhost",
+"database": "eshop_test",
+"user": "postgres",
+"password": "###"
+}
+}
+change the password attribute in both objects with your password 3. next run npm install or yarn on your project.
 
-4. migrations
+4. migrations run in a cmd -> npm run db-up
 
 5. in your postman create a post request:
    the api: http://localhost:3000/api/users
@@ -52,17 +69,26 @@ like this -> Authorization: Bearer "the token you received from above"
 now its time to create a product
 in your postman you can call the post api: http://localhost:3000/api/products
 with the body
+{
 "name": name of your product,
-"price": price of your product,
-"category": enter a category
+"price": price of your product
+}
 
 now its time to create an order(since you have users and products):
 in your postman you can call the post api: http://localhost:3000/api/orders
 with the body
-"productid": enter the product id,
-"quantity": enter the product quantity,
-"userid": enter the user id,
-"status":enter a status(like active or inactive)
+{
+
+"userid": 1,
+"status": "ACTIVE",
+"products":[
+{
+"product_id":1,
+"quantity":20
+}
+]
+
+}
 
 ## Required Technologies
 

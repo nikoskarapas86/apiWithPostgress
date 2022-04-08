@@ -1,6 +1,10 @@
 export interface OrderInterface {
-  productid: number;
-  quantity: number;
+  id?: number;
+  products: OrderProductInterface[];
   userid: number;
   status: string;
+}
+export interface OrderProductInterface {
+  product_id: number;
+  quantity: number;
 }
