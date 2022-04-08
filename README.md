@@ -90,6 +90,12 @@ with the body
 
 }
 
+## Test application
+
+inorder to test the app you have to create a database with the name eshop_test
+
+run the command npm run test
+
 ## Required Technologies
 
 Your application must make use of the following libraries:

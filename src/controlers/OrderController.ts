@@ -6,16 +6,6 @@ import { OrderService } from "../services/OrderService";
 export const OrderController: Router = Router();
 const orderService: OrderService = new OrderService();
 
-// OrderController.get(
-//   "/:id",
-//   authorizationToken,
-//   async (req: Request, res: Response) => {
-//     const id: number = parseInt(req.params.id);
-//     const incomeOrder: OrderInterface[] = await orderService.getOrders(id);
-//     return res.json(incomeOrder);
-//   }
-// );
-
 OrderController.post(
   "/",
   authorizationToken,
