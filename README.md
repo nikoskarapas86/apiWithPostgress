@@ -7,6 +7,9 @@ This repo contains a basic Node and Express app to get you started in constructi
 in order to run this app you need to folow the next steps.
 
 1. create a database with the name eshop
+
+## Prepare env
+
 2. create an .env file and in there iclude the following
    SET ENVI=dev
    BCRYPT_PASSWORD=give a password
@@ -17,6 +20,8 @@ in order to run this app you need to folow the next steps.
    USER="postgres"
    DATABASE="eshop"
    PASSWORD=the password you use to connect to your databases
+
+## Prepare package json
 
 also in my project you will se a database.json file
 {
@@ -39,15 +44,16 @@ change the password attribute in both objects with your password 3. next run npm
 
 4. migrations run in a cmd -> npm run db-up
 
-5. in your postman create a post request:
-   the api: http://localhost:3000/api/users
-   and the body {
-   "firstName":"name",
-   "lastName":"last name",
-   "password":"your password"
-   }
-   6.now you have to login to the application
-   in your postman create a get request:
+5.run npm run start
+in your postman create a post request:
+the api: http://localhost:3000/api/users
+and the body {
+"firstName":"name",
+"lastName":"last name",
+"password":"your password"
+}
+6.now you have to login to the application
+in your postman create a get request:
 
 the get api : http://localhost:3000/api/login
 and the body:{
