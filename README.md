@@ -19,6 +19,7 @@ in order to run this app you need to folow the next steps.
    PORT=5432
    USER="postgres"
    DATABASE="eshop"
+   DATABASE_TEST="eshop_test"
    PASSWORD=the password you use to connect to your databases
 
 ## Prepare package json

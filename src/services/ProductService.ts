@@ -20,8 +20,6 @@ export class ProductService {
     try {
       const conn = await client.connect();
       const { name, price } = product;
-      console.log("-=-==-=-=-=--=-==-=-");
-      console.log(name, price);
       const sql =
         "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";
 
