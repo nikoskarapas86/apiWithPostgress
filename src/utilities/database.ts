@@ -5,7 +5,7 @@ const client = new Pool({
   host: process.env.HOST,
   port: parseInt(process.env.PORT as string),
   database:
-    process.env.ENVI === "test"
+    process.env.ENVI == "test"
       ? process.env.DATABASE_TEST
       : process.env.DATABASE,
   user: process.env.USER,
