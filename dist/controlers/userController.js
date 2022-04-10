@@ -7,14 +7,29 @@ const userService_1 = require("../services/userService");
 exports.UserController = (0, express_1.Router)();
 const user = new userService_1.UserService();
 exports.UserController.post("/", async (request, response) => {
-    const createdUser = await user.createUser(request.body);
-    return response.json(createdUser);
+    try {
+        const createdUser = await user.createUser(request.body);
+        return response.json(createdUser);
+    }
+    catch (e) {
+        return "we could not create user";
+    }
 });
 exports.UserController.get("/", authorization_1.authorizationToken, async (_, response) => {
-    const users = await user.getUsers();
-    return response.json(users);
+    try {
+        const users = await user.getUsers();
+        return response.json(users);
+    }
+    catch (e) {
+        return "could not get the user you asked for";
+    }
 });
 exports.UserController.delete("/:id", authorization_1.authorizationToken, async (request, response) => {
-    const deletedOrder = await user.deleteUser(parseInt(request.params.id));
-    return response.json(deletedOrder);
+    try {
+        const deletedOrder = await user.deleteUser(parseInt(request.params.id));
+        return response.json(deletedOrder);
+    }
+    catch (e) {
+        return "could not delete user";
+    }
 });

@@ -6,6 +6,11 @@ const LoginService_1 = require("../services/LoginService");
 exports.LoginController = (0, express_1.Router)();
 const login = new LoginService_1.LoginService();
 exports.LoginController.get("/", async (request, response) => {
-    const result = await login.authenticate(request.body);
-    return response.json(result);
+    try {
+        const result = await login.authenticate(request.body);
+        return response.json(result);
+    }
+    catch (e) {
+        return "unable to get user,an error has been occured";
+    }
 });

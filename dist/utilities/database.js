@@ -9,7 +9,7 @@ dotenv_1.default.config();
 const client = new pg_1.Pool({
     host: process.env.HOST,
     port: parseInt(process.env.PORT),
-    database: process.env.ENVI === "test"
+    database: process.env.ENVI == "test"
         ? process.env.DATABASE_TEST
         : process.env.DATABASE,
     user: process.env.USER,
