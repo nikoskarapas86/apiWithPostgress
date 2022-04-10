@@ -10,10 +10,14 @@ OrderController.post(
   "/",
   authorizationToken,
   async (req: Request, res: Response) => {
-    const createdOrder: OrderInterface = await orderService.createOrder(
-      req.body
-    );
-    return res.json(createdOrder);
+    try {
+      const createdOrder: OrderInterface = await orderService.createOrder(
+        req.body
+      );
+      return res.json(createdOrder);
+    } catch (e) {
+      return "an error has been occured ,we could not create an order";
+    }
   }
 );
 
@@ -21,9 +25,13 @@ OrderController.delete(
   "/:id",
   authorizationToken,
   async (req: Request, res: Response) => {
-    const deleted: OrderInterface = await orderService.deleteOrder(
-      parseInt(req.params.id)
-    );
-    return res.json(deleted);
+    try {
+      const deleted: OrderInterface = await orderService.deleteOrder(
+        parseInt(req.params.id)
+      );
+      return res.json(deleted);
+    } catch (e) {
+      return " could not delete the order";
+    }
   }
 );

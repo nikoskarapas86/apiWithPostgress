@@ -6,7 +6,26 @@ This repo contains a basic Node and Express app to get you started in constructi
 
 in order to run this app you need to folow the next steps.
 
-1. create a database with the name eshop
+1. ## Set up Database
+
+### Create Databases
+
+Firstly we need to create the dev and test database.
+
+- we need to connect with the default user
+  `psql -U postgres`
+- In psql run the following to create a user
+  - `CREATE USER eshop_user WITH PASSWORD '## your password ##';`
+- In psql run the following to create test and dev databases
+  - `CREATE DATABASE eshop;`
+  - `CREATE DATABASE eshop_test;`
+- Connect to the databases
+  - `\c eshop`
+  - Grant for dev database and grant all privileges
+    - `GRANT ALL PRIVILEGES ON DATABASE eshop TO eshop_user;`
+  - now for the test database
+    - `\c eshop_test`
+    - `GRANT ALL PRIVILEGES ON DATABASE eshop_test TO eshop_user;`
 
 ## Prepare env
 
@@ -43,18 +62,22 @@ also in my project you will se a database.json file
 }
 change the password attribute in both objects with your password 3. next run npm install or yarn on your project.
 
-4. migrations run in a cmd -> npm run db-up
+4. ### Migrate Database
 
-5.run npm run start
-in your postman create a post request:
-the api: http://localhost:3000/api/users
-and the body {
-"firstName":"name",
-"lastName":"last name",
-"password":"your password"
-}
-6.now you have to login to the application
-in your postman create a get request:
+migrations run in a cmd -> npm run db-up
+
+5. ### Running Ports
+   the server will start on port `3000` as well as the database on port `5432`
+   in order to start the server , run npm run start
+   in your postman create a post request:
+   the api: http://localhost:3000/api/users
+   and the body {
+   "firstName":"name",
+   "lastName":"last name",
+   "password":"your password"
+   }
+   6.now you have to login to the application
+   in your postman create a get request:
 
 the get api : http://localhost:3000/api/login
 and the body:{

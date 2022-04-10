@@ -9,10 +9,14 @@ ProductController.post(
   "/",
   authorizationToken,
   async (request: Request, response: Response) => {
-    const createdProduct: ProductInterface = await product.createProduct(
-      request.body
-    );
-    return response.json(createdProduct);
+    try {
+      const createdProduct: ProductInterface = await product.createProduct(
+        request.body
+      );
+      return response.json(createdProduct);
+    } catch (e) {
+      return "we could not create product";
+    }
   }
 );
 
@@ -20,18 +24,26 @@ ProductController.get(
   "/",
   authorizationToken,
   async (_: Request, response: Response) => {
-    const products: ProductInterface[] = await product.getProducts();
-    return response.json(products);
+    try {
+      const products: ProductInterface[] = await product.getProducts();
+      return response.json(products);
+    } catch (e) {
+      return "we could not get product";
+    }
   }
 );
 ProductController.delete(
   "/:id",
   authorizationToken,
   async (request: Request, response: Response) => {
-    const deletedProduct: ProductInterface = await product.deleteProduct(
-      parseInt(request.params.id)
-    );
-    return response.json(deletedProduct);
+    try {
+      const deletedProduct: ProductInterface = await product.deleteProduct(
+        parseInt(request.params.id)
+      );
+      return response.json(deletedProduct);
+    } catch (e) {
+      return "we could not delete product";
+    }
   }
 );
 
@@ -39,9 +51,13 @@ ProductController.get(
   "/:id",
   authorizationToken,
   async (request: Request, response: Response) => {
-    const deletedProduct: ProductInterface = await product.getProductById(
-      parseInt(request.params.id)
-    );
-    return response.json(deletedProduct);
+    try {
+      const deletedProduct: ProductInterface = await product.getProductById(
+        parseInt(request.params.id)
+      );
+      return response.json(deletedProduct);
+    } catch (e) {
+      return "we could not get the product you asked for";
+    }
   }
 );
