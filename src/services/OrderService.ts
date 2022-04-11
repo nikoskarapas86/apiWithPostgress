@@ -23,7 +23,35 @@ export class OrderService {
       throw new Error(`Could not get order`);
     }
   }
+  async getOrders(): Promise<OrderInterface[]> {
+    try {
+      const sql = "SELECT * FROM orders";
+      const connection = await client.connect();
+      const { rows } = await connection.query(sql);
+      const order = rows[0];
 
+      const orderProducts =
+        "SELECT product_id, quantity FROM order_products WHERE order_id=($1)";
+      const orders = [];
+
+      for (const order of rows) {
+        const { rows: orderProductRows } = await connection.query(
+          orderProducts,
+          [order.id]
+        );
+        orders.push({
+          ...order,
+          products: orderProductRows,
+        });
+      }
+
+      connection.release();
+
+      return orders;
+    } catch (err) {
+      throw new Error(`Could not get orders. ${err}`);
+    }
+  }
   async createOrder(order: OrderInterface): Promise<OrderInterface> {
     const { products, status, userid } = order;
     try {
