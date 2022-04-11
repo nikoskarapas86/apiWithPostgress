@@ -10,7 +10,7 @@
     "db-down": "db-migrate down",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "test": "SET ENVI=test && db-migrate --env test up &&  jasmine-ts --config jasmine.json || db-migrate --env test down",
+    "test": "SET ENVI=test && db-migrate --env test up &&  jasmine-ts  || db-migrate --env test down",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier": "prettier \"src/**/*\"",

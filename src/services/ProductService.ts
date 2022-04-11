@@ -20,14 +20,10 @@ export class ProductService {
     try {
       const conn = await client.connect();
       const { name, price } = product;
-      const sql =
-        "INSERT INTO products (name, price) VALUES($1, $2) RETURNING *";
-
+      const sql = `INSERT INTO products (name, price) VALUES($1, $2) RETURNING *;`;
       const result = await conn.query(sql, [name, price]);
       const createdProduct = result.rows[0];
-
       conn.release();
-
       return createdProduct;
     } catch (error) {
       throw new Error(`unable create product ${error}`);

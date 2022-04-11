@@ -31,11 +31,11 @@ export class OrderService {
       const sql =
         "INSERT INTO orders (userid, status) VALUES($1, $2) RETURNING *";
       const result = await conn.query(sql, [userid, status]);
+
       const order = result.rows[0];
       const orderProductsSql =
         "INSERT INTO order_products (order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING product_id, quantity";
       const orderProducts = [];
-
       for (const product of products) {
         const { product_id, quantity } = product;
 

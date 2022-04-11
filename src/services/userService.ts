@@ -4,10 +4,11 @@ import { UserInterface } from "../interfaces/User";
 import client from "../utilities/database";
 
 export class UserService {
+  table = "users";
   async getUsers(): Promise<UserInterface[]> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql = `SELECT * FROM users`;
+      const sql = `SELECT * FROM ${this.table}`;
       const result: QueryResult = await conn.query(sql);
       conn.release();
 
@@ -22,8 +23,7 @@ export class UserService {
       const conn = await client.connect();
       const { firstName, lastName, password } = u;
       console.log(firstName, lastName, password);
-      const sql =
-        "INSERT INTO users (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *";
+      const sql = `INSERT INTO ${this.table} (firstName, lastName, password) VALUES($1, $2, $3) RETURNING *`;
       const pepper: string = process.env.BCRYPT_PASSWORD as string;
       const salt: string = process.env.SALT_ROUNDS as string;
       console.log(pepper);
@@ -44,7 +44,7 @@ export class UserService {
   async getUserById(userId: number): Promise<UserInterface> {
     try {
       const conn: PoolClient = await client.connect();
-      const sql = `SELECT * FROM users WHERE id = $1`;
+      const sql = `SELECT * FROM ${this.table} WHERE id = $1`;
       const result: QueryResult = await conn.query(sql, [userId]);
       conn.release();
 
@@ -56,7 +56,7 @@ export class UserService {
 
   async deleteUser(id: number): Promise<UserInterface> {
     try {
-      const sql = `DELETE FROM users WHERE id=$1 RETURNING *`;
+      const sql = `DELETE FROM ${this.table} WHERE id=$1 RETURNING *`;
       const conn: PoolClient = await client.connect();
       const result: QueryResult = await conn.query(sql, [id]);
       conn.release();

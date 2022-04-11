@@ -20,18 +20,14 @@ ProductController.post(
   }
 );
 
-ProductController.get(
-  "/",
-  authorizationToken,
-  async (_: Request, response: Response) => {
-    try {
-      const products: ProductInterface[] = await product.getProducts();
-      return response.json(products);
-    } catch (e) {
-      return "we could not get product";
-    }
+ProductController.get("/", async (_: Request, response: Response) => {
+  try {
+    const products: ProductInterface[] = await product.getProducts();
+    return response.json(products);
+  } catch (e) {
+    return "we could not get products";
   }
-);
+});
 ProductController.delete(
   "/:id",
   authorizationToken,
@@ -47,17 +43,13 @@ ProductController.delete(
   }
 );
 
-ProductController.get(
-  "/:id",
-  authorizationToken,
-  async (request: Request, response: Response) => {
-    try {
-      const deletedProduct: ProductInterface = await product.getProductById(
-        parseInt(request.params.id)
-      );
-      return response.json(deletedProduct);
-    } catch (e) {
-      return "we could not get the product you asked for";
-    }
+ProductController.get("/:id", async (request: Request, response: Response) => {
+  try {
+    const deletedProduct: ProductInterface = await product.getProductById(
+      parseInt(request.params.id)
+    );
+    return response.json(deletedProduct);
+  } catch (e) {
+    return "we could not get the product you asked for";
   }
-);
+});
