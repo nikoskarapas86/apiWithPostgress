@@ -8,16 +8,16 @@ const orderService: OrderService = new OrderService();
 
 OrderController.post(
   "/",
-  // authorizationToken,
+  authorizationToken,
   async (req: Request, res: Response) => {
-    // try {
-    const createdOrder: OrderInterface = await orderService.createOrder(
-      req.body
-    );
-    return res.json(createdOrder);
-    // } catch (e) {
-    //   return "an error has been occured ,we could not create an order";
-    // }
+    try {
+      const createdOrder: OrderInterface = await orderService.createOrder(
+        req.body
+      );
+      return res.json(createdOrder);
+    } catch (e) {
+      return "an error has been occured ,we could not create an order";
+    }
   }
 );
 
