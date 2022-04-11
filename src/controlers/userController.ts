@@ -40,3 +40,17 @@ UserController.delete(
     }
   }
 );
+UserController.get(
+  "/:id",
+  authorizationToken,
+  async (request: Request, response: Response) => {
+    try {
+      const deletedOrder: UserInterface = await user.getUserById(
+        parseInt(request.params.id)
+      );
+      return response.json(deletedOrder);
+    } catch (e) {
+      return "could not get  user ";
+    }
+  }
+);
