@@ -1,11 +1,14 @@
 import { OrderInterface } from "../../interfaces/orders";
+import { UserInterface } from "../../interfaces/User";
 import { OrderService } from "../../services/OrderService";
+import { ProductService } from "../../services/ProductService";
+import { UserService } from "../../services/userService";
 
 const orderService: OrderService = new OrderService();
 
 describe("orderService methods in test", () => {
   const order: OrderInterface = {
-    userid: 17,
+    userid: 0,
     status: "ACTIVE",
     products: [
       {
@@ -14,6 +17,18 @@ describe("orderService methods in test", () => {
       },
     ],
   };
+  beforeAll(async () => {
+    const userData: UserInterface = {
+      firstName: "nik",
+      lastName: "karapas",
+      password: "fermionio1",
+    };
+
+    const userService: UserService = new UserService();
+    const prodService: ProductService = new ProductService();
+    const newUser = await userService.createUser(userData);
+    if (newUser.id) order.userid = newUser.id;
+  });
 
   it("should have an createOrder method", () => {
     expect(orderService.createOrder).toBeDefined();
