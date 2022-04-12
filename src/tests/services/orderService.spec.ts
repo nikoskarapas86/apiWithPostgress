@@ -3,7 +3,7 @@ import { OrderService } from "../../services/OrderService";
 
 const orderService: OrderService = new OrderService();
 
-describe("ProductService methods in test", () => {
+describe("orderService methods in test", () => {
   const order: OrderInterface = {
     userid: 17,
     status: "ACTIVE",
@@ -32,7 +32,7 @@ describe("ProductService methods in test", () => {
   const deleteOrder = async (id: number) => {
     return orderService.deleteOrder(id);
   };
-  it("createProduct method should create an order", async () => {
+  it("createOrder method should create an order", async () => {
     const newOrder: OrderInterface = await createOrder(order);
 
     if (newOrder) {
